@@ -1,0 +1,206 @@
+{
+    "info": {
+        "_postman_id": "56031d6d-95e8-4bdb-ab5e-b6d873f08af6",
+        "name": "Sintasi Test",
+        "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "50401552",
+        "_collection_link": "https://marantikaraditya-7142167.postman.co/workspace/Marantika-Raditya's-Workspace~b4b93277-ad72-41fa-8bf4-54556a3915ad/collection/50401552-56031d6d-95e8-4bdb-ab5e-b6d873f08af6?action=share&source=collection_link&creator=50401552"
+    },
+    "item": [
+        {
+            "name": "Login Test",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Successful POST request\", function () {",
+                            "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                            "});",
+                            ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}\n",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/login",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "8000",
+                    "path": ["api", "login"]
+                },
+                "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+            },
+            "response": []
+        },
+        {
+            "name": "Visits Test",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                    }
+                }
+            ],
+            "request": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [
+                        {
+                            "key": "token",
+                            "value": "{{token}}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"patient_id\": 1,\r\n  \"visit_at\": \"2025-11-27 15:00:00\",\r\n  \"visit_type\": \"General Check\",\r\n  \"notes\": \"Pasien mengeluh pusing.\"\r\n}\r\n",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/visits",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "8000",
+                    "path": ["api", "visits"]
+                },
+                "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+            },
+            "response": []
+        },
+        {
+            "name": "Patients Test",
+            "request": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [
+                        {
+                            "key": "token",
+                            "value": "{{token}}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"medical_record_number\": \"MR-001\",\r\n  \"name\": \"Siti Aminah\",\r\n  \"phone\": \"082233445566\",\r\n  \"email\": \"siti@example.com\",\r\n  \"birth_date\": \"1990-01-10\",\r\n  \"gender\": \"Female\",\r\n  \"address\": \"Jakarta\"\r\n}\r\n",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/patients",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "8000",
+                    "path": ["api", "patients"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Visits Test",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [
+                        {
+                            "key": "token",
+                            "value": "{{token}}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"patient_id\": 1,\r\n  \"visit_at\": \"2025-11-27 15:00:00\",\r\n  \"visit_type\": \"General Check\",\r\n  \"notes\": \"Pasien mengeluh pusing.\"\r\n}\r\n",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/visits",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "8000",
+                    "path": ["api", "visits"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Patients Test",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [
+                        {
+                            "key": "token",
+                            "value": "{{token}}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"medical_record_number\": \"MR-001\",\r\n  \"name\": \"Siti Aminah\",\r\n  \"phone\": \"082233445566\",\r\n  \"email\": \"siti@example.com\",\r\n  \"birth_date\": \"1990-01-10\",\r\n  \"gender\": \"Female\",\r\n  \"address\": \"Jakarta\"\r\n}\r\n"
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/patients",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "8000",
+                    "path": ["api", "patients"]
+                }
+            },
+            "response": []
+        }
+    ]
+}
